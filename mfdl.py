@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
 """Mangafox Download Script by Kunal Sarkhel <theninja@bluedevs.net>"""
 """Forked from siikamiika's Python 3 branch"""
 """Edited by Kitty"""
@@ -34,8 +33,7 @@ else:
 
 URL_BASE = "http://mangafox.me/"
 MAKE_CBZ = True
-DOWNLOAD_TO = "./"
-
+DOWNLOAD_TO = "C:/Users/Kat/Dropbox/eBooks/Comics"
 
 def get_page_soup(url):
     """Download a page and return a BeautifulSoup object of the html"""
@@ -109,12 +107,12 @@ def get_chapter_number(url_fragment):
 
 def download_urls(image_urls, manga_name, chapter_number):
     """Download all images from a list"""
-    download_dir = '{0}/{1}/'.format(manga_name, chapter_number)
+    download_dir = '{0}/{1}/{1}_{2}/'.format(DOWNLOAD_TO, manga_name, chapter_number)
     if os.path.exists(download_dir):
         shutil.rmtree(download_dir)
     os.makedirs(download_dir)
     for i, url in enumerate(image_urls):
-        filename = './{0}/{1}/{2:03}.jpg'.format(manga_name, chapter_number, i)
+        filename = '{0}/{1}/{1}_{2}/{3:04}.jpg'.format(DOWNLOAD_TO, manga_name, chapter_number, i)
         print('Downloading {0} to {1}'.format(url, filename))
         urlretrieve(url, filename)
 
